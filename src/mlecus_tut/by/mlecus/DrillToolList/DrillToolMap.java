@@ -14,21 +14,14 @@ public class DrillToolMap {
     }
     DrillToolMap(DrillToolMap drillTools)
     {
-        /*for (DrillTool tool: drillTools.DrillTools)
-        {
-            DrillTools.add(tool);
-        }*/
         this.DrillTools.putAll(drillTools.DrillTools);
     }
     public void AddTool(String toolName, double toolDiam)
     {
-        //this.DrillTools.add(tool);
         this.DrillTools.put(toolName,(Double) toolDiam);
     }
     public double GetToolDiam(String toolName)
     {
-        //double diam;
-        //if ((diam=this.DrillTools.get(toolName))!=null)
         if (this.DrillTools.get(toolName)!=null)
         {
             return this.DrillTools.get(toolName);
