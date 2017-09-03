@@ -5,6 +5,6 @@ package mlecus_tut.by.mlecus.Log;
  */
 public interface ILogWriter {
     public void Writeln(String message);
-    public void OpenLog ();
+    public void OpenLog (String logPath);
     public void CloseLog ();
 }

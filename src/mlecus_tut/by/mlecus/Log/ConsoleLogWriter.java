@@ -10,7 +10,7 @@ public class ConsoleLogWriter implements ILogWriter {
     }
 
     @Override
-    public void OpenLog() {
+    public void OpenLog(String logPath) {
 
     }
 

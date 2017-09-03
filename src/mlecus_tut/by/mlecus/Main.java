@@ -32,7 +32,7 @@ public class Main {
             System.out.println(exc);
         }
         */
-        Excellon excellon=new Excellon();
+        Excellon excellon=new Excellon("TEST.DRL");
         DrillList drillList=new DrillList();
         DrillToolMap drillToolMap=new DrillToolMap();
         //System.out.println(excellon.ParseExcellon("TEST.DRL",drillFrame));
