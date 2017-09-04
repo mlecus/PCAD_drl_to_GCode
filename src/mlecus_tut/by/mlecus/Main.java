@@ -11,11 +11,12 @@ public class Main {
         System.out.println(ob);
     }
     public static void main(String[] args) {
-     Excellon excellon=new Excellon("TEST.DRL");
+         Excellon excellon=new Excellon("data/TEST.DRL");
+        //Excellon excellon=new Excellon("data/NTC-15-01-13_MAINBOARD_V1.2.DRL");
         DrillList drillList=new DrillList();
         DrillToolMap drillToolMap=new DrillToolMap();
         //System.out.println(excellon.ParseExcellon("TEST.DRL",drillFrame));
-        excellon.ParseExcellon("TEST.DRL",drillList,drillToolMap);
+        excellon.ParseExcellon(drillList,drillToolMap);
         //System.out.println(drillList);
     }
 }

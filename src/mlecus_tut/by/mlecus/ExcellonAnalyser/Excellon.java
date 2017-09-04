@@ -61,7 +61,10 @@ public class Excellon {
             digBeforePoint = Integer.parseInt(s.substring(s.lastIndexOf('=')+1,s.lastIndexOf(':')));
             log.Writeln("\tamount of digts before point is setted to "+digBeforePoint);
             int digAfterPointStartPosition=s.lastIndexOf(':')+1;
-            digAfterPoint= Integer.parseInt(s.substring(digAfterPointStartPosition,s.indexOf(' ',digAfterPointStartPosition)));
+            int digAfterPointEndPosition=s.indexOf(' ',digAfterPointStartPosition);
+            if (digAfterPointEndPosition <0) digAfterPointEndPosition=s.length();
+            String subs=s.substring(digAfterPointStartPosition,digAfterPointEndPosition);
+            digAfterPoint= Integer.parseInt(subs.toString());
             log.Writeln("\tamount of digts after point is setted to "+digAfterPoint);
         }
         catch (NumberFormatException | IndexOutOfBoundsException exc)
@@ -76,8 +79,19 @@ public class Excellon {
             f.Close();
             return false;
         }*/
-        s=SkipComments();
-        switch (s.toUpperCase())
+        s=SkipComments().toUpperCase();
+        if (s.contains("METRIC"))
+        {
+            metric=true;
+        }else if (s.contains("INCH"))
+        {
+            metric=false;
+        }else
+        {
+            log.Writeln("the type of measurement system not found");
+            return false;
+        }
+        /*switch (s.toUpperCase())
         {
             case "METRIC":
                 metric=true;
@@ -88,7 +102,7 @@ public class Excellon {
             default:
                 log.Writeln("the type of measurement system not found");
                 return false;
-        }
+        }*/
         log.Writeln(s+"\t//the type of measurement system found at "+f.getIndex());
         log.Writeln("\t the type of measurement system is setted to "+ (metric?"METRIC":"INCH"));
         do
@@ -191,7 +205,7 @@ public class Excellon {
         return false;
         //return true;
     }
-    public boolean ParseExcellon(String fileName, DrillList drillList, DrillToolMap drillToolMap)
+    public boolean ParseExcellon(DrillList drillList, DrillToolMap drillToolMap)
     {
         if (!ParseHeader(drillToolMap))
         {
